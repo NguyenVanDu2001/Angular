@@ -1,0 +1,37 @@
+<!-- <p>{{title}}</p>
+<div><span>id: </span>{{hero.id}}</div>
+<div><span>name: </span>{{hero.name}}</div>
+<h2>{{hero.name | uppercase}} Details</h2>
+<div>
+    <label for="name">Hero name: </label>
+    <input id="name" [(ngModel)]="hero.name" placeholder="name">
+</div>
+
+
+<div>
+    <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </li>
+</div>
+
+
+<h1>selected</h1>
+
+<app-book-detail [hero]="selectedHero"></app-book-detail> -->
+<ul class="heroes">
+    <li *ngFor="let hero of heroes">
+        <a routerLink="/detail/{{hero.id}}">
+            <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </a>
+        <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
+    </li>
+</ul>
+<div>
+    <label for="new-hero">Hero name: </label>
+    <input id="new-hero" #heroName />
+
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button class="add-button" (click)="add(heroName.value); heroName.value=''">
+      Add hero
+    </button>
+</div>

@@ -1,0 +1,72 @@
+<form [formGroup]="profileForm" class="form-container">
+    <mat-card>
+        <mat-card-header class="card-header">
+            <mat-card-title>Nguyễn Văn Du Test</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-md-5">
+                    <mat-form-field class="full-width">
+                        <mat-label>Choose type</mat-label>
+                        <mat-select formControlName="ConvertInput">
+                            <mat-option *ngFor="let team of getTypeConvert()" [value]="team.id">
+                                {{team.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <mat-card-actions class="col-md-2 btn-center">
+                    <button (click)="saveForm()" mat-raised-button color="primary">Convert</button>
+                </mat-card-actions>
+                <div class="col-md-5 pull-right">
+                    <mat-form-field class="full-width">
+                        <mat-label>Choose type</mat-label>
+                        <mat-select formControlName="Convertoutput">
+                            <mat-option *ngFor="let team of getTypeConvert()" [value]="team.id">
+                                {{team.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 pull-left">
+                    <mat-form-field class="full-width">
+                        <input formControlName="input" matInput placeholder="input">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-5 pull-right ">
+                    <mat-form-field class="full-width">
+                        <input formControlName="output" matInput placeholder="output">
+                    </mat-form-field>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-sm-6">
+                    <mat-form-field class="full-width">
+                        <textarea formControlName="address" matInput placeholder="Address"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6 top-padding">
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Select DOB</mat-label>
+                        <input formControlName="dob" matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-radio-group formControlName="gender" class="margin-left">
+                        <mat-radio-button value="male"> Male </mat-radio-button>
+                        <mat-radio-button value="female"> Female </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div> -->
+
+
+        </mat-card-content>
+
+    </mat-card>
+</form>

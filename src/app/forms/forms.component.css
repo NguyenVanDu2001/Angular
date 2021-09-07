@@ -1,0 +1,41 @@
+@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+.full-width {
+    width: 100%;
+}
+
+.top-padding {
+    padding-top: 3px;
+}
+
+.margin-left mat-radio-button:not(:first-child) {
+    margin-left: 10px;
+}
+
+.form-container {
+    margin: 100px;
+}
+
+.card-header {
+    justify-content: center;
+    text-align: center;
+    display: flex;
+}
+
+.form-container {
+    position: relative;
+}
+
+.btn-center {
+    justify-content: center;
+    display: flex;
+}
+
+.btn-center button {
+    background-color: #fff;
+    color: rgba(142, 158, 252, 0.8)
+}
+
+
+/* .mat-typography {
+    background-color: rgba(142, 158, 252, 0.8) !important;
+} */
