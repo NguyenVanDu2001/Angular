@@ -29,7 +29,9 @@ export class FormsComponent implements OnInit {
     private asb = "https://localhost:44308/home/Base64Encode?plainText=12122"
 saveForm(){
     var objectData = this.profileForm.value;
-    this.httpClient.get(this.asb).subscribe(res => console.log(res));  
+   var data =  this.httpClient.get(this.asb);
+   debugger
+   return data;
 }
   ngOnInit(): void {
   }
