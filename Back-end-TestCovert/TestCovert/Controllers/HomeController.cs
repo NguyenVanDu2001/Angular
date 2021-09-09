@@ -1,12 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 
 namespace TestCovert.Controllers
 {
-    public class HomeController : Controller
+  public class HomeController : Controller
     {
         public ActionResult Index()
         {
@@ -28,6 +30,8 @@ namespace TestCovert.Controllers
                 return Json(string.Empty, JsonRequestBehavior.AllowGet);
             }
         }
+    //https://localhost:44308/home/ConvertIntToString?ConvertTo=2&ConvertResult=3&ValueConvert=12
 
-    }
+  }
+ 
 }

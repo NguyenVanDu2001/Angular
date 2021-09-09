@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl ,FormBuilder} from '@angular/forms';
 import {FormsService} from './service/forms.service';
 import {FormDataSelect} from './service/form.data';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient ,HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
@@ -25,15 +25,17 @@ export class FormsComponent implements OnInit {
     } 
     selectedItem = 1;
     selectedItem1 =1;
-    private REST_API_SERVER = "https://localhost:44308/Home/Base64Encode";
-    private asb = "https://localhost:44308/home/Base64Encode?plainText=12122"
-saveForm(){
-    var objectData = this.profileForm.value;
-   var data =  this.httpClient.get(this.asb);
-   debugger
-   return data;
-}
-  ngOnInit(): void {
-  }
+    httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    private REST_API_SERVER = "http://localhost:44308/api/ConvertApi/ConvertTypeIntoResult";
+    saveForm(){
+      // var data = this.formService.getApi();
+      var data1 = this.formService.getStudentList().subscribe(res => {
+          console.log(res);
+      });
+    }
+    ngOnInit(): void {
+    }
 
 }
