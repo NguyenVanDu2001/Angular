@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -23,7 +24,7 @@ namespace TestCovert.Controllers
     //)]
     [System.Web.Http.HttpGet]
     [System.Web.Http.Route("api/ConvertApi/ConvertTypeIntoResult")]
-    public HttpResponseMessage ConvertTypeIntoResult([FromUri] string input, TypeConvert ConvertTo , TypeConvert ConvertInto)
+    public HttpResponseMessage ConvertTypeIntoResult([FromUri] string input , TypeConvert ConvertTo , TypeConvert ConvertInto)
     {
       var res = new Responsive();
       try
@@ -46,6 +47,56 @@ namespace TestCovert.Controllers
         res.Data = ConvertResult(inpConvert, ConvertInto);
       }
       catch (Exception)
+      {
+        res.Message = "Convert error";
+        res.StatusCode = HttpStatusCode.OK;
+        res.Data = string.Empty;
+      }
+
+      return Request.CreateResponse(HttpStatusCode.OK, res);
+    }
+    [System.Web.Http.HttpPost]
+    [System.Web.Http.Route("api/ConvertApi/ConvertTypeIntoFile")]
+    public HttpResponseMessage ConvertTypeIntoFile([FromUri]  TypeConvert ConvertTo , TypeConvert ConvertInto)
+    {
+      var file = HttpContext.Current.Request.Files[0];
+      var res = new Responsive();
+      try
+      {
+       
+        // Get the complete folder path and store the file inside it.  
+        var filePath = Path.Combine (HttpContext.Current.Server.MapPath("~/Upload"), file.FileName);
+        file.SaveAs(filePath);
+
+
+        string inpConvert = string.Empty;
+
+        using (System.Drawing.Image image = System.Drawing.Image.FromFile(filePath))
+        {
+          using (MemoryStream m = new MemoryStream())
+          {
+            image.Save(m, image.RawFormat);
+            byte[] imageBytes = m.ToArray();
+            inpConvert = Convert.ToBase64String(imageBytes);
+          }
+        }
+
+        switch (ConvertTo)
+        {
+          case TypeConvert.Tint:
+            inpConvert = (Int32.Parse(inpConvert)).ToString();
+            break;
+          case TypeConvert.TBase64:
+            inpConvert = Base64Decode(inpConvert);
+            break;
+          case TypeConvert.Tfile:
+            break;
+          default:
+            break;
+        }
+        res.Data = ConvertResult(inpConvert, ConvertInto);
+      }
+      catch (Exception ex)
       {
         res.Message = "Convert error";
         res.StatusCode = HttpStatusCode.OK;

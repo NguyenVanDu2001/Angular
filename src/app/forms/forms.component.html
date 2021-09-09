@@ -32,7 +32,8 @@
             <div class="row">
                 <div class="col-md-5 pull-left">
                     <mat-form-field class="full-width">
-                        <input formControlName="input" matInput placeholder="input">
+                        <!-- <input formControlName="input" [disabled]="profileForm.controls.ConvertTo.value == 4" matInput placeholder="input"> -->
+                        <input formControlName="input" [readonly]="profileForm.controls.ConvertTo.value == 4" matInput placeholder="input">
                     </mat-form-field>
                 </div>
                 <div class="col-md-5 pull-right ">
@@ -41,6 +42,12 @@
                     </mat-form-field>
                 </div>
             </div>
+            <div class="preview" *ngIf="isConvertImg == 4">
+                <input formControlName="file" id="file" type="file" (change)="onFileChange($event)">
+                <img [src]="imageSrc || 'http://placehold.it/180'" *ngIf="imageSrc" style="height: 300px; width:500px">
+            </div>
+            <!-- <input type='file' (change)="readURL($event);" />
+            <img id="blah" [src]="imageSrc || 'http://placehold.it/180'" alt="your image" /> -->
             <!-- <div class="row">
                 <div class="col-sm-6">
                     <mat-form-field class="full-width">
