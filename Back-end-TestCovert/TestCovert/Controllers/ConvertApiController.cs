@@ -24,26 +24,12 @@ namespace TestCovert.Controllers
     //)]
     [System.Web.Http.HttpGet]
     [System.Web.Http.Route("api/ConvertApi/ConvertTypeIntoResult")]
-    public HttpResponseMessage ConvertTypeIntoResult([FromUri] string input , TypeConvert ConvertTo , TypeConvert ConvertInto)
+    public HttpResponseMessage ConvertTypeIntoResult([FromUri] string input, TypeConvert ConvertTo, TypeConvert ConvertInto)
     {
       var res = new Responsive();
       try
       {
-        string inpConvert = input;
-
-        switch (ConvertTo)
-        {
-          case TypeConvert.Tint:
-            inpConvert = (Int32.Parse(inpConvert)).ToString();
-            break;
-          case TypeConvert.TBase64:
-            inpConvert = Base64Decode(inpConvert);
-            break;
-          case TypeConvert.Tfile:
-            break;
-          default:
-            break;
-        }
+        string inpConvert = inpConvert = ConvertToResult(input, ConvertTo);
         res.Data = ConvertResult(inpConvert, ConvertInto);
       }
       catch (Exception)
@@ -57,7 +43,7 @@ namespace TestCovert.Controllers
     }
     [System.Web.Http.HttpPost]
     [System.Web.Http.Route("api/ConvertApi/ConvertTypeIntoFile")]
-    public HttpResponseMessage ConvertTypeIntoFile([FromUri]  TypeConvert ConvertTo , TypeConvert ConvertInto)
+    public HttpResponseMessage ConvertTypeIntoFile([FromUri] TypeConvert ConvertTo, TypeConvert ConvertInto)
     {
       var file = HttpContext.Current.Request.Files;
       var res = new Responsive();
@@ -81,20 +67,7 @@ namespace TestCovert.Controllers
           }
 
         }
-
-        switch (ConvertTo)
-        {
-          case TypeConvert.Tint:
-            inpConvert = (Int32.Parse(inpConvert)).ToString();
-            break;
-          case TypeConvert.TBase64:
-            inpConvert = Base64Decode(inpConvert);
-            break;
-          case TypeConvert.Tfile:
-            break;
-          default:
-            break;
-        }
+        inpConvert = ConvertToResult(inpConvert, ConvertTo);
         res.Data = ConvertResult(inpConvert, ConvertInto);
       }
       catch (Exception ex)
@@ -105,6 +78,30 @@ namespace TestCovert.Controllers
       }
 
       return Request.CreateResponse(HttpStatusCode.OK, res);
+    }
+    public string ConvertToResult(string input, TypeConvert typeConvert){
+      try
+      {
+        switch (typeConvert)
+        {
+          case TypeConvert.Tint:
+            input = (Int32.Parse(input)).ToString();
+            break;
+          case TypeConvert.TBase64:
+            input = Base64Decode(input);
+            break;
+          case TypeConvert.Tfile:
+            break;
+          default:
+            break;
+        }
+        return input;
+      }
+      catch (Exception)
+      {
+
+        throw;
+      }
     }
     [System.Web.Http.HttpGet]
     [System.Web.Http.Route("api/ConvertApi/test")]
