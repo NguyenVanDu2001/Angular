@@ -23,13 +23,13 @@ namespace TestCovert
           defaults: new { id = RouteParameter.Optional }
       );
       config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/octet-stream"));
-      //var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
-      //config.EnableCors(cors);
+      var cors = new EnableCorsAttribute("http://localhost:4200", "*", "*");
+      config.EnableCors(cors);
 
-      //var jsonFormatter = config.Formatters.JsonFormatter;
-      //jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-      //config.Formatters.Remove(config.Formatters.XmlFormatter);
-      //jsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
+      var jsonFormatter = config.Formatters.JsonFormatter;
+      jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+      config.Formatters.Remove(config.Formatters.XmlFormatter);
+      jsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Utc;
     }
   }
 }

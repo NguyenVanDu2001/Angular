@@ -35,6 +35,11 @@
     color: rgba(142, 158, 252, 0.8)
 }
 
+::ng-deep .custom-style {
+    background-color: green;
+    color: white;
+}
+
 
 /* .mat-typography {
     background-color: rgba(142, 158, 252, 0.8) !important;

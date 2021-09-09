@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace TestCovert.Controllers
 {
-  //[EnableCors("*", "*", "*")]
+  [EnableCors("*", "*", "*")]
   //[System.Web.Http.RoutePrefix("api/Convert")]
   public class ConvertApiController : ApiController
   {

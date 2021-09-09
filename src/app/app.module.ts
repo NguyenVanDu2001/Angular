@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { FormsService } from './forms/service/forms.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { FormsComponent } from './forms/forms.component';
@@ -23,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,7 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
+      InMemoryDataService, { dataEncapsulation: false ,passThruUnknownUrl : true },
     ),
     BrowserAnimationsModule,
     MatSliderModule,
@@ -49,7 +51,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule ,
-     ReactiveFormsModule
+     ReactiveFormsModule,
+     MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

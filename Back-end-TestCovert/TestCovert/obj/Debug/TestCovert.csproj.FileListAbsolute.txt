@@ -170,3 +170,4 @@ D:\Font-end\angular-tour-of-heroes\Back-end-TestCovert\TestCovert\obj\Debug\Test
 D:\Font-end\angular-tour-of-heroes\Back-end-TestCovert\TestCovert\obj\Debug\TestCovert.csproj.CopyComplete
 D:\Font-end\angular-tour-of-heroes\Back-end-TestCovert\TestCovert\obj\Debug\TestCovert.dll
 D:\Font-end\angular-tour-of-heroes\Back-end-TestCovert\TestCovert\obj\Debug\TestCovert.pdb
+D:\Font-end\angular-tour-of-heroes\Back-end-TestCovert\TestCovert\obj\Debug\TestCovert.csproj.AssemblyReference.cache

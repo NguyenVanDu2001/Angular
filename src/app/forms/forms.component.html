@@ -8,7 +8,7 @@
                 <div class="col-md-5">
                     <mat-form-field class="full-width">
                         <mat-label>Choose type</mat-label>
-                        <mat-select formControlName="ConvertInput">
+                        <mat-select formControlName="ConvertTo">
                             <mat-option *ngFor="let team of getTypeConvert()" [value]="team.id">
                                 {{team.name}}
                             </mat-option>
@@ -21,7 +21,7 @@
                 <div class="col-md-5 pull-right">
                     <mat-form-field class="full-width">
                         <mat-label>Choose type</mat-label>
-                        <mat-select formControlName="Convertoutput">
+                        <mat-select formControlName="ConvertInto">
                             <mat-option *ngFor="let team of getTypeConvert()" [value]="team.id">
                                 {{team.name}}
                             </mat-option>
