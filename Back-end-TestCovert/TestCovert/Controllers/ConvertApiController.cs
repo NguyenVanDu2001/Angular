@@ -59,26 +59,27 @@ namespace TestCovert.Controllers
     [System.Web.Http.Route("api/ConvertApi/ConvertTypeIntoFile")]
     public HttpResponseMessage ConvertTypeIntoFile([FromUri]  TypeConvert ConvertTo , TypeConvert ConvertInto)
     {
-      var file = HttpContext.Current.Request.Files[0];
+      var file = HttpContext.Current.Request.Files;
       var res = new Responsive();
       try
       {
-       
-        // Get the complete folder path and store the file inside it.  
-        var filePath = Path.Combine (HttpContext.Current.Server.MapPath("~/Upload"), file.FileName);
-        file.SaveAs(filePath);
-
-
         string inpConvert = string.Empty;
-
-        using (System.Drawing.Image image = System.Drawing.Image.FromFile(filePath))
+        // Get the complete folder path and store the file inside it.
+        if (file.Count > 0)
         {
-          using (MemoryStream m = new MemoryStream())
+          var filePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Upload"), file[0].FileName);
+          file[0].SaveAs(filePath);
+
+          using (System.Drawing.Image image = System.Drawing.Image.FromFile(filePath))
           {
-            image.Save(m, image.RawFormat);
-            byte[] imageBytes = m.ToArray();
-            inpConvert = Convert.ToBase64String(imageBytes);
+            using (MemoryStream m = new MemoryStream())
+            {
+              image.Save(m, image.RawFormat);
+              byte[] imageBytes = m.ToArray();
+              inpConvert = Convert.ToBase64String(imageBytes);
+            }
           }
+
         }
 
         switch (ConvertTo)

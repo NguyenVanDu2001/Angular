@@ -30,7 +30,6 @@ namespace TestCovert.Controllers
                 return Json(string.Empty, JsonRequestBehavior.AllowGet);
             }
         }
-    //https://localhost:44308/home/ConvertIntToString?ConvertTo=2&ConvertResult=3&ValueConvert=12
 
   }
  
